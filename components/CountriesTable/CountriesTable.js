@@ -5,6 +5,7 @@ import {
 import React from "react";
 import styles from "./CountriesTable.module.css";
 import { useState } from "react";
+import Link from "next/Link";
 
 const orderBy = (countries, value, direction) => {
   if (direction === "asc") {
@@ -80,10 +81,12 @@ const CountriesTable = ({ countries }) => {
         </button>
       </div>
       {orderedCountries.map((country) => (
-        <div className={styles.row} key={Math.random()}>
-          <div className={styles.name}> {country.name}</div>
-          <div className={styles.population}> {country.population}</div>
-        </div>
+        <Link href={`/country/${country.alpha3Code}`} key={Math.random()}>
+          <div className={styles.row} key={Math.random()}>
+            <div className={styles.name}> {country.name}</div>
+            <div className={styles.population}> {country.population}</div>
+          </div>
+        </Link>
       ))}
     </div>
   );
